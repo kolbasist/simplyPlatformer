@@ -5,29 +5,28 @@ using UnityEngine;
 public class PatrolByPath : MonoBehaviour
 {
     [SerializeField] private Transform _path;
-    [SerializeField] float _speed;
+    [SerializeField] private float _speed;
+    [SerializeField] private bool _isDebuging;
+    //[SerializeField] private PointsParser _pointsParser;
 
     private Transform[] _wayPoints;
     private int _wayPointsCount;
     private int _currentWayPoint = 0;
-            
+
     private void Start()
     {
-        _wayPointsCount = _path.childCount;
-        _wayPoints = new Transform[_wayPointsCount];
-
-        for (int i = 0; i < _wayPointsCount; i++)
-        {
-            _wayPoints[i] = _path.GetChild(i);
-        }
+        PointsParser pointsParser = new PointsParser();
+        _wayPoints = pointsParser.Parse(_path, out _wayPointsCount);        
     }
-        
+
     private void Update()
     {
         Transform target = _wayPoints[_currentWayPoint];
-        
+
         transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
-        Debug.Log( transform.position - target.position );
+
+        if (_isDebuging)
+            Debug.Log(transform.position - target.position);
 
         if (transform.position == target.position)
         {
@@ -35,6 +34,6 @@ public class PatrolByPath : MonoBehaviour
 
             if (_currentWayPoint >= _wayPointsCount)
                 _currentWayPoint = 0;
-        }       
+        }
     }
 }
