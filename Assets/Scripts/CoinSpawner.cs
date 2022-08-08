@@ -5,8 +5,7 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Coin _template;
-    [SerializeF+3ield] private uint _coinCount = 12;
-    [SerializeField] private float _duration = 2f;
+    [SerializeField] private float _startDelay = 2f;
     [SerializeField] private Transform _points;    
 
     private Transform[] _pointsArray;
@@ -16,12 +15,14 @@ public class CoinSpawner : MonoBehaviour
     private void Start()
     {
         PointsParser pointsParser = new PointsParser();
-        _pointsArray = pointsParser.Parse(_points, out _pointsCount);        
+        _pointsArray = pointsParser.Parse(_points, out _pointsCount);
+
+        var spawnQueue = StartCoroutine(SpawnCoins((uint)_pointsCount));
     }
 
-    private IEnumerator SpawnQueue(uint count)
-    {
-        var waitForFewSeconds = new WaitForSeconds(_duration);
+    private IEnumerator SpawnCoins(uint count)
+    {        
+        yield return new WaitForSeconds(_startDelay);
 
         for (int i = 0; i < count; i++)
         {
@@ -31,9 +32,7 @@ public class CoinSpawner : MonoBehaviour
             if (_spawnIndex >= _pointsCount)
             {
                 _spawnIndex = 0;
-            }
-
-            yield return waitForFewSeconds;
+            }            
         }
     }
 }

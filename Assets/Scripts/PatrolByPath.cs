@@ -5,9 +5,8 @@ using UnityEngine;
 public class PatrolByPath : MonoBehaviour
 {
     [SerializeField] private Transform _path;
-    [SerializeField] private float _speed;
-    [SerializeField] private bool _isDebuging;
-    //[SerializeField] private PointsParser _pointsParser;
+    [SerializeField] private float _speed = 1f;
+    [SerializeField] private bool _isDebuging;    
 
     private Transform[] _wayPoints;
     private int _wayPointsCount;
