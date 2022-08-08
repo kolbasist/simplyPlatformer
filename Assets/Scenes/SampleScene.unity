@@ -181,7 +181,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1.0261629
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -189,7 +189,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &110758760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6135,11 +6135,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7385942226009449843, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: _speed
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7385942226009449843, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: _jumpForce
-      value: 500
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: -7385942226009449843, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: _rigidbody

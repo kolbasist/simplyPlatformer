@@ -24,25 +24,25 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             _animator.SetTrigger("Walk");
-            _rigidbody.AddForce(Vector2.right * _speed);
+            transform.Translate(_speed * Time.deltaTime , 0, 0);
+
+            if (_isFacingRight == true)
+                Flip();
         }
         else if (Input.GetKey(KeyCode.A))
         {
             _animator.SetTrigger("Walk");
-            _rigidbody.AddForce(Vector2.left * _speed);
+            transform.Translate(_speed * Time.deltaTime* -1, 0, 0);
+
+            if (_isFacingRight == false)
+                Flip();
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _animator.SetTrigger("Jump");
             _rigidbody.AddForce(Vector2.up * _jumpForce);
-        }
-
-        if (Input.GetKeyDown(KeyCode.A) && _isFacingRight == false)
-            Flip();
-        else if (Input.GetKeyDown(KeyCode.D) && _isFacingRight == true)
-            Flip();
-
-        
+        }       
     }
 
     private void Flip()
