@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("Jump");
             _rigidbody.AddForce(Vector2.up * _jumpForce);
         }       
-    }
+    }   
 
     private void Flip()
     {

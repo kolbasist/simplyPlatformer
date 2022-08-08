@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.TryGetComponent<Player>(out Player player))
+        {
+            Destroy(player.gameObject);
+        }
     }
 }

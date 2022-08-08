@@ -14,7 +14,7 @@ public class CoinSpawner : MonoBehaviour
 
     private void Start()
     {
-        PointsParser pointsParser = new PointsParser();
+        PathPointsParser pointsParser = new PathPointsParser();
         _pointsArray = pointsParser.Parse(_points, out _pointsCount);
 
         var spawnQueue = StartCoroutine(SpawnCoins((uint)_pointsCount));
