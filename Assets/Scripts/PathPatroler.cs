@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolByPath : MonoBehaviour
+public class PathPatroler : MonoBehaviour
 {
     [SerializeField] private Transform _path;
     [SerializeField] private float _speed = 1f;
-    [SerializeField] private bool _isDebuging;
 
     private Transform[] _wayPoints;
     private int _wayPointsCount;

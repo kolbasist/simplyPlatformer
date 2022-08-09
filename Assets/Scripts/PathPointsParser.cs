@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathPointsParser : MonoBehaviour
+public class PathPointsParser
 {
     public Transform[] Parse(Transform input, out int pointsCount)
     {

@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PathPointsParser.cs" />
-    <Compile Include="Assets\Scripts\PatrolByPath.cs" />
+    <Compile Include="Assets\Scripts\PathPatroler.cs" />
     <Compile Include="Assets\Scripts\PlayersFoot.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\CoinSpawner.cs" />
