@@ -57,8 +57,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && _jumpCount > 0)
         {
-            _jumpCount--;
-            Debug.Log(_jumpCount + " " + _isTouchingGround);
+            _jumpCount--;           
             _animator.SetTrigger("Jump");
             _rigidbody.AddForce(Vector2.up * _jumpForce);
         }
