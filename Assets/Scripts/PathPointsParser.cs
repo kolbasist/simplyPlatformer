@@ -11,8 +11,7 @@ public class PathPointsParser : MonoBehaviour
 
         for (int i = 0; i < points.Length; i++)
         {
-            points[i] = input.GetChild(i);
-            Debug.Log($"point {i} added {points[i].position}");
+            points[i] = input.GetChild(i);          
         }
 
         return points;
