@@ -83,10 +83,13 @@ GameObject:
   - component: {fileID: 7117494746874149857}
   - component: {fileID: 4697456147784855674}
   - component: {fileID: 2677310258683474212}
+  - component: {fileID: 3148241809787562771}
+  - component: {fileID: 3314300733378257679}
   - component: {fileID: -7385942226009449843}
   - component: {fileID: 110758759}
-  - component: {fileID: 4257217286079016508}
   - component: {fileID: 110758760}
+  - component: {fileID: 3438964056155055216}
+  - component: {fileID: -6800352153103387293}
   m_Layer: 0
   m_Name: Astronaut
   m_TagString: Untagged
@@ -182,6 +185,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3148241809787562771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867849754737885892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3af8aaf7976744a9cfb03c9e5100f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3314300733378257679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867849754737885892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48ff199fa920a54d98d58518a693bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-7385942226009449843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,12 +222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _rigidbody: {fileID: 110758759}
   _jumpForce: 400
   _maxJumpCount: 3
   _contactFilter:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &110758759
 Rigidbody2D:
   serializedVersion: 4
@@ -222,18 +248,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4257217286079016508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867849754737885892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c52eb05cf5ad134cbc8be6fd95fd08f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &110758760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -260,3 +274,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3157187, y: 4.6822834}
   m_EdgeRadius: 0
+--- !u!114 &3438964056155055216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867849754737885892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b840e3a549ff5b4c94772cc0d600810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _contrForce: 100
+--- !u!114 &-6800352153103387293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867849754737885892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9459b8a8025a9404a8071943d31f9570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -25,10 +25,10 @@ public class PathPatroler : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
         Vector3 direction = transform.position - _target.position;
 
-        if (direction.x < 0 && _isFacingRight == true)
-            Flip();
-        else if (direction.x > 0 && _isFacingRight == false)
-            Flip();
+        //if (direction.x < 0 && _isFacingRight == true)
+        //    Flip();
+        //else if (direction.x > 0 && _isFacingRight == false)
+        //    Flip();
 
 
         if (transform.position == _target.position)
