@@ -56,17 +56,17 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\MovingController.cs" />
+    <Compile Include="Assets\Scripts\PhysicsMovement.cs" />
+    <Compile Include="Assets\Scripts\SpriteFliper.cs" />
     <Compile Include="Assets\Scripts\PathPointsParser.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\ScoreCounter.cs" />
     <Compile Include="Assets\Scripts\PathPatroler.cs" />
     <Compile Include="Assets\Scripts\PlayersFoot.cs" />
+    <Compile Include="Assets\Scripts\HashAnimationNames.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
-    <Compile Include="Assets\Scripts\SpriteFliper.cs" />
-    <Compile Include="Assets\Scripts\ScoreCounter.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\HashAnimationNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
