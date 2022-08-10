@@ -7030,8 +7030,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7385942226009449843, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
+      propertyPath: LayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -7385942226009449843, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: _contactFilter.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 110758759, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212024164573872953, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: _contrForce
@@ -7059,11 +7067,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117494746874149857, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.232
+      value: -24.31
       objectReference: {fileID: 0}
     - target: {fileID: 7117494746874149857, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.559
+      value: -6.564
       objectReference: {fileID: 0}
     - target: {fileID: 7117494746874149857, guid: c379e5c12a9da5d4d975e8bed86e5631, type: 3}
       propertyPath: m_LocalPosition.z
