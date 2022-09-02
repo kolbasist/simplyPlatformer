@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PathPointsParser
 {
@@ -11,7 +9,7 @@ public class PathPointsParser
 
         for (int i = 0; i < points.Length; i++)
         {
-            points[i] = input.GetChild(i);          
+            points[i] = input.GetChild(i);
         }
 
         return points;
