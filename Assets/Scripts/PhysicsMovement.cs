@@ -1,62 +1,88 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+[RequireComponent(typeof(Animator))]
 
 public class PhysicsMovement : MonoBehaviour
 {
-    public float MinGroundNormalY = .65f;
-    public float GravityModifier = 1f;
-    public Vector2 Velocity;
-    public LayerMask LayerMask;
+    [SerializeField] private float _minGroundNormalY = .65f;
+    [SerializeField] private float _gravityModifier = 1f;
+    [SerializeField] private float _velocitySetPoint = 3f;
+    [SerializeField] private float _jumpVelocity = 10f;
+    [SerializeField] private Vector2 _velocity;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private float _enemyMicrojump = 2f;
+    [SerializeField] private bool _isDoubleJumpEnabled = true;
 
-    protected Vector2 targetVelocity;
-    protected bool grounded;
-    protected Vector2 groundNormal;
-    protected Rigidbody2D rb2d;
-    protected ContactFilter2D contactFilter;
-    protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
-    protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
+    protected Vector2 _targetVelocity;
+    protected bool _isInGround;
+    protected Vector2 _groundNormal;
+    protected Rigidbody2D _rigidBody2D;
+    protected ContactFilter2D _contactFilter;
+    protected RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
+    protected List<RaycastHit2D> _hitBufferList = new List<RaycastHit2D>(16);
+    private BoxCollider2D _foot;
+    private int _jumpCount;
+    private int _jumpCountSingle = 1;
+    private int _jumpCountDouble = 2;
+    private Animator _animator;
+    private HashAnimationNames animationNames = new HashAnimationNames();
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.001f;
 
     void OnEnable()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
+        JumpCountSet();
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
     {
-        contactFilter.useTriggers = false;
-        contactFilter.SetLayerMask(LayerMask);
-        contactFilter.useLayerMask = true;
+        _contactFilter.useTriggers = false;
+        _contactFilter.SetLayerMask(_layerMask);
+        _contactFilter.useLayerMask = true;
     }
 
     void Update()
     {
-        targetVelocity = new Vector2(Input.GetAxis("Horizontal"), 0);
+        _targetVelocity = new Vector2(Input.GetAxis("Horizontal") * _velocitySetPoint, 0);
 
-        if (Input.GetKey(KeyCode.Space) && grounded)
-            Velocity.y = 10;
+        if (_targetVelocity != Vector2.zero)
+        {
+            _animator.SetTrigger(animationNames.WalkHash);
+        }
+
+        if (_isInGround && _jumpCount == 0)
+            JumpCountSet();
+
+        if (Input.GetKeyDown(KeyCode.Space) && _jumpCount > 0)
+        {
+            _velocity.y = _jumpVelocity;
+            _jumpCount--;
+            _animator.SetTrigger(animationNames.JumpHash);           
+        }        
     }
 
     void FixedUpdate()
     {
-        Velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
-        Velocity.x = targetVelocity.x;
+        _velocity += _gravityModifier * Physics2D.gravity * Time.deltaTime;
+        _velocity.x = _targetVelocity.x;
+                
+        _isInGround = false;
 
-        grounded = false;
-
-        Vector2 deltaPosition = Velocity * Time.deltaTime;
-        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+        Vector2 deltaPosition = _velocity * Time.deltaTime;
+        Vector2 moveAlongGround = new Vector2(_groundNormal.y, -_groundNormal.x);
         Vector2 move = moveAlongGround * deltaPosition.x;
 
         Movement(move, false);
 
         move = Vector2.up * deltaPosition.y;
 
-        Movement(move, true);
+        Movement(move, true);        
     }
 
     void Movement(Vector2 move, bool yMovement)
@@ -65,39 +91,56 @@ public class PhysicsMovement : MonoBehaviour
 
         if (distance > minMoveDistance)
         {
-            int count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
+            int count = _rigidBody2D.Cast(move, _contactFilter, _hitBuffer, distance + shellRadius);
 
-            hitBufferList.Clear();
+            _hitBufferList.Clear();
 
             for (int i = 0; i < count; i++)
             {
-                hitBufferList.Add(hitBuffer[i]);
+                _hitBufferList.Add(_hitBuffer[i]);
             }
 
-            for (int i = 0; i < hitBufferList.Count; i++)
+            for (int i = 0; i < _hitBufferList.Count; i++)
             {
-                Vector2 currentNormal = hitBufferList[i].normal;
-                if (currentNormal.y > MinGroundNormalY)
+                Vector2 currentNormal = _hitBufferList[i].normal;
+                if (currentNormal.y > _minGroundNormalY)
                 {
-                    grounded = true;
+                    _isInGround = true;
                     if (yMovement)
                     {
-                        groundNormal = currentNormal;
+                        _groundNormal = currentNormal;
                         currentNormal.x = 0;
                     }
                 }
 
-                float projection = Vector2.Dot(Velocity, currentNormal);
+                float projection = Vector2.Dot(_velocity, currentNormal);
                 if (projection < 0)
                 {
-                    Velocity = Velocity - projection * currentNormal;
+                    _velocity = _velocity - projection * currentNormal;
                 }
 
-                float modifiedDistance = hitBufferList[i].distance - shellRadius;
+                float modifiedDistance = _hitBufferList[i].distance - shellRadius;
                 distance = modifiedDistance < distance ? modifiedDistance : distance;
             }
         }
 
-        rb2d.position = rb2d.position + move.normalized * distance;
+        _rigidBody2D.position = _rigidBody2D.position + move.normalized * distance;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponentInParent<Enemy>())
+            _velocity.y = _enemyMicrojump;            
+    }
+
+    private void JumpCountSet()
+    {
+        if (_isDoubleJumpEnabled)        
+            _jumpCount = _jumpCountDouble;
+        else
+            _jumpCount = _jumpCountSingle;
+
+        Debug.Log($"Jump count seted as {_jumpCount}");
+        
+    }   
 }
