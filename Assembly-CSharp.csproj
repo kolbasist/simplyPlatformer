@@ -66,6 +66,8 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Coin\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\Coin\Coin.cs" />
+    <Compile Include="Assets\Scripts\Basic\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemySpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

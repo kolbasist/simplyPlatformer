@@ -11,14 +11,12 @@ GameObject:
   - component: {fileID: 7117494746874149857}
   - component: {fileID: 4697456147784855674}
   - component: {fileID: 2677310258683474212}
-  - component: {fileID: 7086947495956323105}
   - component: {fileID: 3148241809787562771}
   - component: {fileID: 3314300733378257679}
   - component: {fileID: -7385942226009449843}
   - component: {fileID: 110758759}
   - component: {fileID: 110758760}
   - component: {fileID: -6800352153103387293}
-  - component: {fileID: 4571464225337919192}
   m_Layer: 0
   m_Name: Astronaut
   m_TagString: Untagged
@@ -113,18 +111,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7086947495956323105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867849754737885892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdbb37531c9844e81548f037d93424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3148241809787562771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,17 +214,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9459b8a8025a9404a8071943d31f9570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4571464225337919192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867849754737885892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdbb37531c9844e81548f037d93424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

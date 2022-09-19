@@ -11,7 +11,6 @@ public class PathPatroler : MonoBehaviour
     private int _wayPointsCount;
     private int _currentWayPoint = 0;
     private Transform _target;
-    private bool _isFacingRight = false;
 
     private void Start()
     {
@@ -24,12 +23,6 @@ public class PathPatroler : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
         Vector3 direction = transform.position - _target.position;
-
-        //if (direction.x < 0 && _isFacingRight == true)
-        //    Flip();
-        //else if (direction.x > 0 && _isFacingRight == false)
-        //    Flip();
-
 
         if (transform.position == _target.position)
         {
@@ -45,14 +38,15 @@ public class PathPatroler : MonoBehaviour
     private void SetTarget()
     {
         _target = _wayPoints[_currentWayPoint];
-    }
+    }    
 
-    private void Flip()
+    public void SetParameters(Transform path, float speed = 1f)
     {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
-
-        _isFacingRight = !_isFacingRight;
+        if (_path == null && path.childCount != 0 && path != null)
+        {
+            _path = path;
+            _speed = speed;
+        }
+            
     }
 }

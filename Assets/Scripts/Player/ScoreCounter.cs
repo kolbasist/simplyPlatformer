@@ -22,7 +22,7 @@ public class ScoreCounter : MonoBehaviour
         if (collision.TryGetComponent(out Coin coin))
         {
             GetCoin(coin);
-            Destroy(coin.gameObject);
+            coin.gameObject.SetActive(false);
         }
     }
 }

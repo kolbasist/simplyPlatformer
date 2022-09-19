@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player player))
         {
-            Destroy(gameObject);           
+            gameObject.SetActive(false);           
         }
     }
 }

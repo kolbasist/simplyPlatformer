@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public class CoinSpawner : ObjectPool
 {
-    [SerializeField] private Coin _template;
-    [SerializeField] private float _startDelay = 2f;
+    [SerializeField] private Coin _template;    
     [SerializeField] private Transform _points;    
 
     private Transform[] _pointsArray;
@@ -14,25 +14,12 @@ public class CoinSpawner : MonoBehaviour
 
     private void Start()
     {
+        GameObject[] prefabs = new GameObject[1];
+        prefabs[0] = _template.gameObject;
+
+        Initialize(prefabs);
+
         PathPointsParser pointsParser = new PathPointsParser();
         _pointsArray = pointsParser.Parse(_points, out _pointsCount);
-
-        var spawnQueue = StartCoroutine(SpawnCoins((uint)_pointsCount));
-    }
-
-    private IEnumerator SpawnCoins(uint count)
-    {        
-        yield return new WaitForSeconds(_startDelay);
-
-        for (int i = 0; i < count; i++)
-        {
-            Coin newCoin = Instantiate(_template, _pointsArray[_spawnIndex].position, Quaternion.identity);
-            _spawnIndex++;
-
-            if (_spawnIndex >= _pointsCount)
-            {
-                _spawnIndex = 0;
-            }            
-        }
-    }
+    }    
 }

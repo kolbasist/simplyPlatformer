@@ -129,7 +129,7 @@ public class PhysicsMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponentInParent<Enemy>())
+        if (collision.TryGetComponent(out Enemy enemy))
             _velocity.y = _enemyMicrojump;            
     }
 
@@ -140,7 +140,6 @@ public class PhysicsMovement : MonoBehaviour
         else
             _jumpCount = _jumpCountSingle;
 
-        Debug.Log($"Jump count seted as {_jumpCount}");
-        
+        Debug.Log($"Jump count seted as {_jumpCount}");        
     }   
 }
