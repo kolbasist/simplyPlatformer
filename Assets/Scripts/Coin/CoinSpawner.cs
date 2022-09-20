@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CoinSpawner : ObjectPool
 {
-    [SerializeField] private Coin _template;    
-    [SerializeField] private Transform _points;    
+    [SerializeField] private Coin _template;
+    [SerializeField] private Transform _points;
 
     private Transform[] _pointsArray;
     private int _pointsCount;
@@ -21,5 +21,12 @@ public class CoinSpawner : ObjectPool
 
         PathPointsParser pointsParser = new PathPointsParser();
         _pointsArray = pointsParser.Parse(_points, out _pointsCount);
-    }    
+
+        foreach (Transform point in _pointsArray)
+            if (TryGetObject(out GameObject coin))
+            {
+                coin.SetActive(true);
+                coin.transform.position = point.position;
+            }
+    }
 }
